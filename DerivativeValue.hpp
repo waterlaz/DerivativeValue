@@ -71,65 +71,65 @@ DValue<T, n> DVariable(int i, T x){
 
 // Arithmetic with scalars
 
-template<typename S, typename T, int n> 
-DValue<T, n> operator+ ( S a, 
+template<typename T, int n> 
+DValue<T, n> operator+ ( const T& a, 
                          const DValue<T, n>& b )
 {
     return DValue<T, n>(a + b.value,
                         b.gradient);
 }
 
-template<typename S, typename T, int n> 
+template<typename T, int n> 
 DValue<T, n> operator+ ( const DValue<T, n>& b,
-                         S a)
+                         const T& a)
 {
     return DValue<T, n>(a + b.value,
                         b.gradient);
 }
 
-template<typename S, typename T, int n> 
-DValue<T, n> operator- ( S a, 
+template<typename T, int n> 
+DValue<T, n> operator- ( const T& a, 
                          const DValue<T, n>& b )
 {
     return DValue<T, n>(a - b.value,
                         -b.gradient);
 }
 
-template<typename S, typename T, int n> 
+template<typename T, int n> 
 DValue<T, n> operator- ( const DValue<T, n>& b,
-                         S a)
+                         const T& a)
 {
     return DValue<T, n>(b.value - a,
                         b.gradient);
 }
 
-template<typename S, typename T, int n> 
-DValue<T, n> operator* ( S a, 
+template<typename T, int n> 
+DValue<T, n> operator* ( const T& a, 
                          const DValue<T, n>& b )
 {
     return DValue<T, n>(a * b.value,
                         a*b.gradient);
 }
 
-template<typename S, typename T, int n> 
+template<typename T, int n> 
 DValue<T, n> operator* ( const DValue<T, n>& b,
-                         S a)
+                         const T& a)
 {
     return DValue<T, n>(a*b.value,
                         a*b.gradient);
 }
 
-template<typename S, typename T, int n> 
-DValue<T, n> operator/ ( S a, 
+template<typename T, int n> 
+DValue<T, n> operator/ ( const T& a, 
                          const DValue<T, n>& b )
 {
     return DValue<T, n>(a / b.value,
                         -a / b.value / b.value * b.gradient);
 }
 
-template<typename S, typename T, int n> 
+template<typename T, int n> 
 DValue<T, n> operator/ ( const DValue<T, n>& b,
-                         S a)
+                         const T& a)
 {
     return DValue<T, n>(b.value / a,
                         b.gradient / a);
