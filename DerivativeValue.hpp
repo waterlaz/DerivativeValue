@@ -22,6 +22,10 @@ public:
     }
 };
 
+template <int n, typename T, int rows, int cols>
+Eigen::Matrix<DValue<T, n>, rows, cols> toDValue(const Eigen::Matrix<T, rows, cols>& M){
+    return M.template cast<DValue<T, n>>();
+}
 
 namespace Eigen {
 
@@ -132,28 +136,28 @@ DValue<T, n> operator/ ( const DValue<T, n>& b,
 }
 
 template<typename T, int n>
-DValue<T, n>& operator+= (DValue<T, n>& a, T& b)
+DValue<T, n>& operator+= (DValue<T, n>& a, const T& b)
 {
     a = a+b;
     return a; 
 }
 
 template<typename T, int n>
-DValue<T, n>& operator-= (DValue<T, n>& a, T& b)
+DValue<T, n>& operator-= (DValue<T, n>& a, const T& b)
 {
     a = a-b;
     return a; 
 }
 
 template<typename T, int n>
-DValue<T, n>& operator*= (DValue<T, n>& a, T& b)
+DValue<T, n>& operator*= (DValue<T, n>& a, const T& b)
 {
     a = a*b;
     return a; 
 }
 
 template<typename T, int n>
-DValue<T, n>& operator/= (DValue<T, n>& a, T& b)
+DValue<T, n>& operator/= (DValue<T, n>& a, const T& b)
 {
     a = a/b;
     return a; 
@@ -177,6 +181,15 @@ DValue<T, n> operator- ( const DValue<T, n>& a,
         a.value - b.value,
         a.gradient - b.gradient);
 }
+
+template<typename T, int n> 
+DValue<T, n> operator- ( const DValue<T, n>& a)
+{
+    return DValue<T, n>(
+        -a.value,
+        -a.gradient);
+}
+
 
 template<typename T, int n> 
 DValue<T, n> operator* ( const DValue<T, n>& a, 
