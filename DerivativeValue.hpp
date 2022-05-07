@@ -49,7 +49,7 @@ struct NumTraits<DValue<T, n> > : NumTraits<T> {
 }// namespace Eigen
 
 template <typename T, int m, int n>
-Eigen::Matrix<T, m, n> jacobian(
+Eigen::Matrix<T, m, n> jacobianFromVector(
     const Eigen::Matrix<DValue<T, n>, m, 1>& v)
 {
     int rows = v.rows();
