@@ -29,5 +29,5 @@ int main(){
     auto r = sqrt(x*x + y*y);
     auto angle = atan(y/x);
     Eigen::Matrix<DValue<float, 2>, 2, 1> v(r, angle);
-    std::cout<<jacobian(v)<<"\n";
+    std::cout<<jacobianFromVector(v)<<"\n";
 }
